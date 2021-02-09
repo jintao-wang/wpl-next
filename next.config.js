@@ -6,16 +6,16 @@ module.exports = withImages({
   assetPrefix: isProd ? 'https://webresource.123kanfang.com/next-solution/customer/EFC' : '',
   dynamicAssetPrefix: true,
   inlineImageLimit: 16384,
-  // webpack(config, options) {
-  //   if (!options.isServer) {
-  //     // eslint-disable-next-line no-param-reassign
-  //     config.node = {
-  //       fs: 'empty',
-  //     };
-  //   }
-  //   return config;
-  // },
-  // trailingSlash: true,
+  webpack(config, options) {
+    if (!options.isServer) {
+      // eslint-disable-next-line no-param-reassign
+      config.node = {
+        fs: 'empty',
+      };
+    }
+    return config;
+  },
+  trailingSlash: true,
   // async exportPathMap(
   //   // eslint-disable-next-line no-unused-vars
   //   defaultPathMap,
@@ -25,7 +25,7 @@ module.exports = withImages({
   //   },
   // ) {
   //   return {
-  //     '/': { page: '/' },
+  //     '/': { page: '/index' },
   //   };
   // },
 });
