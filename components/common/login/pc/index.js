@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import app from '../../../../firebase';
@@ -14,17 +14,66 @@ const Login = ({
   const [signInState, setSignInState] = useState('登入');
   const [signUpState, setSignUpState] = useState('注册');
   const [canClick, setCanClick] = useState(true);
-  const [emailInput, setEmailInput] = useState('');
-  const [password, setPassword] = useState('');
+  const [, signedActions] = signedStore.useModel();
+  const [, emailActions] = emailStore.useModel();
+  const emailInput = useRef(null);
+  const password = useRef(null);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const handleKeyEvent = (e) => {
+      if (e.keyCode === 13 && _signType === 'signIn') {
+        handleSignIn();
+        return;
+      }
+      if (e.keyCode === 13 && _signType === 'signUp') {
+        handleSignUp();
+      }
+    };
+    document.addEventListener('keydown', handleKeyEvent);
+    return () => {
+      document.removeEventListener('keydown', handleKeyEvent);
+    };
+  }, []);
 
-  const handleEmailChange = (e) => {
-    setEmailInput(e.target.value);
+  useEffect(() => {
+    app.auth().onAuthStateChanged((user) => {
+      if (user) {
+        CurrentUser.set({
+          displayName: user.displayName,
+          email: user.email,
+          emailVerified: user.emailVerified,
+          phoneNumber: user.phoneNumber,
+          photoURL: user.photoURL,
+          uid: user.uid,
+          refreshToken: user.refreshToken,
+        });
+        emailActions.setEmail(CurrentUser.info.email);
+        signedActions.onChange(true);
+        user.getIdToken(true).then((idToken) => {
+          CurrentUser.info.token = idToken;
+        }).catch((error) => {
+          console.error(error);
+        });
+      } else {
+        CurrentUser.clear();
+      }
+    });
+  }, []);
+
+  const handleEmailChange = () => {
+    if (signInError) {
+      setSignInError('');
+      emailInput.current.value = '';
+      password.current.value = '';
+    }
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+  const handlePasswordChange = () => {
+    if (signInError) {
+      setSignInError('');
+      emailInput.current.value = '';
+      password.current.value = '';
+    }
   };
 
   const setUserInfo = (currentUser) => {
@@ -37,9 +86,9 @@ const Login = ({
       uid: currentUser.uid,
       refreshToken: currentUser.refreshToken,
     });
-    emailStore.actions.setEmail(CurrentUser.info.email);
+    emailActions.setEmail(CurrentUser.info.email);
     setCanClick(true);
-    signedStore.actions.onChange(true);
+    signedActions.onChange(true);
     onClose();
     currentUser.getIdToken(true).then((idToken) => {
       CurrentUser.info.token = idToken;
@@ -51,7 +100,7 @@ const Login = ({
   const handleSignIn = () => {
     setCanClick(false);
     setSignInState('登入中...');
-    app.auth().signInWithEmailAndPassword(emailInput, password)
+    app.auth().signInWithEmailAndPassword(emailInput.current.value, password.current.value)
       .then(() => {
         setUserInfo(app.auth().currentUser);
       })
@@ -65,7 +114,7 @@ const Login = ({
   const handleSignUp = () => {
     setCanClick(false);
     setSignUpState('注册中...');
-    app.auth().createUserWithEmailAndPassword(emailInput, password)
+    app.auth().createUserWithEmailAndPassword(emailInput.current.value, password.current.value)
       .then(() => {
         setUserInfo(app.auth().currentUser);
       })
@@ -106,26 +155,31 @@ const Login = ({
           <FormLineSC>
             <span>邮件:</span>
             <input
-              value={emailInput}
               type="email"
               placeholder="请输入邮箱"
-              onChange={handleEmailChange}
+              onFocus={handleEmailChange}
+              ref={emailInput}
             />
           </FormLineSC>
           <FormLineSC>
             <span>密码:</span>
             <input
-              value={password}
               type="password"
               placeholder="请输入密码"
-              onChange={handlePasswordChange}
+              onFocus={handlePasswordChange}
+              ref={password}
             />
           </FormLineSC>
           <ErrorMessageSC>{signInError}</ErrorMessageSC>
           {
             _signType === 'signIn'
               ? (
-                <SubmitSC onClick={handleSignIn} canClick={canClick}>{signInState}</SubmitSC>
+                <SubmitSC
+                  onClick={handleSignIn}
+                  canClick={canClick}
+                >
+                  {signInState}
+                </SubmitSC>
               )
               : (
                 <SubmitSC onClick={handleSignUp} canClick={canClick}>{signUpState}</SubmitSC>

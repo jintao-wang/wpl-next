@@ -4,15 +4,23 @@ import ChineseFlag from '../static/china.svg';
 import Login from '../../../common/login';
 import Modal from '../../../base/modal/3.0';
 import { signedStore, emailStore } from '../../../../store';
+import { CurrentUser } from '../../../../constant';
+import app from '../../../../firebase';
 
 const HeaderTop = () => {
   const [signType, setSignType] = useState('signIn');
   const [isSignForm, setIsSignForm] = useState(false);
-
-  useEffect(() => {}, []);
+  const [signedState, signedActions] = signedStore.useModel();
+  const [emailState, emailActions] = emailStore.useModel();
 
   const handleLogout = () => {
-
+    app.auth().signOut().then(() => {
+      signedActions.onChange(false);
+      emailActions.setEmail(null);
+      CurrentUser.clear();
+    }).catch((error) => {
+      console.error(error);
+    });
   };
 
   const handleSign = (type) => {
@@ -29,30 +37,34 @@ const HeaderTop = () => {
         </LanguageSC>
         <SignInfoSC>
           {
-            signedStore.state.isSigned ? (
+            signedState.isSigned ? (
               <SignedInfoSC>
-                <div className="text">{emailStore.state.email}</div>
+                <div className="text">{emailState.email}</div>
                 <div className="line" />
                 <div className="text" onClick={handleLogout}>退出</div>
               </SignedInfoSC>
             ) : (
-              <NoSignedInfoSC>
-                <Modal
-                  visible={isSignForm}
-                  closeFunc={() => setIsSignForm(false)}
-                  content={
-                    (
-                      <Login
-                        signType={signType}
-                        onClose={() => setIsSignForm(false)}
-                      />
-                    )
-                  }
-                  trigger={(<div className="text" onClick={() => handleSign('signIn')}>登入</div>)}
-                />
-                <div className="line" />
-                <div className="text" onClick={() => handleSign('signUp')}>注册</div>
-              </NoSignedInfoSC>
+              <Modal
+                visible={isSignForm}
+                closeFunc={() => setIsSignForm(false)}
+                content={
+                  (
+                    <Login
+                      signType={signType}
+                      onClose={() => setIsSignForm(false)}
+                    />
+                  )
+                }
+                trigger={
+                  (
+                    <NoSignedInfoSC>
+                      <div className="text" onClick={() => handleSign('signIn')}>登入</div>
+                      <div className="line" />
+                      <div className="text" onClick={() => handleSign('signUp')}>注册</div>
+                    </NoSignedInfoSC>
+                  )
+                }
+              />
             )
           }
         </SignInfoSC>
