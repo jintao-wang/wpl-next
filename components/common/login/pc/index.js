@@ -191,6 +191,17 @@ const Login = ({
   );
 };
 
+Login.propTypes = {
+  signType: PropTypes.string,
+  onClose: PropTypes.func,
+};
+
+Login.defaultProps = {
+  signType: 'signIn',
+  onClose: () => {},
+};
+export default Login;
+
 const ContainerSC = styled.div`
   width: 520px;
   height: 320px;
@@ -279,13 +290,3 @@ const SubmitSC = styled('div', ['canClick'])`
   cursor: pointer;
   background:  ${(props) => (props.canClick ? '#0a62b0' : 'rgba(10,98,176,0.6)')};
 `;
-Login.propTypes = {
-  signType: PropTypes.string,
-  onClose: PropTypes.func,
-};
-
-Login.defaultProps = {
-  signType: 'signIn',
-  onClose: () => {},
-};
-export default Login;

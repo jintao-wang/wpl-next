@@ -16,16 +16,4 @@ module.exports = withImages({
     return config;
   },
   trailingSlash: true,
-  // async exportPathMap(
-  //   // eslint-disable-next-line no-unused-vars
-  //   defaultPathMap,
-  //   {
-  //     // eslint-disable-next-line no-unused-vars
-  //     dev, dir, outDir, distDir, buildId,
-  //   },
-  // ) {
-  //   return {
-  //     '/': { page: '/index' },
-  //   };
-  // },
 });

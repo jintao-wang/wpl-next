@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import ChineseFlag from '../static/china.svg';
 import Login from '../../../common/login';
@@ -39,7 +39,20 @@ const HeaderTop = () => {
           {
             signedState.isSigned ? (
               <SignedInfoSC>
-                <div className="text">{emailState.email}</div>
+                <div className="text">
+                  <span>{emailState.email}</span>
+                  <svg
+                    viewBox="0 0 1024 1024"
+                    width="20"
+                    height="20"
+                    fill="#fff"
+                    style={{marginBottom: '-1px'}}
+                  >
+                    <path
+                      d="M512 608c-6.4 0-19.2 0-25.6-6.4l-128-128c-12.8-12.8-12.8-32 0-44.8s32-12.8 44.8 0L512 531.2l102.4-102.4c12.8-12.8 32-12.8 44.8 0s12.8 32 0 44.8l-128 128C531.2 608 518.4 608 512 608z"
+                    />
+                  </svg>
+                </div>
                 <div className="line" />
                 <div className="text" onClick={handleLogout}>退出</div>
               </SignedInfoSC>
@@ -116,6 +129,8 @@ const SignedInfoSC = styled.div`
 
   .text {
     cursor: pointer;
+    display: flex;
+    align-items: center;
   }
   
   .line {
