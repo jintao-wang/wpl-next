@@ -57,6 +57,7 @@ const LinkSC = styled('div', ['active'])`
   font-family: PingFangSC-Semibold,PingFang SC;
   letter-spacing: 1px;
   font-size: 15px;
+  white-space: nowrap;
   
   :hover {
     //color: rgba(52, 51, 152, 0.95);
