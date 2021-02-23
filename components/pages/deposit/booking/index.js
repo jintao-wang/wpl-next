@@ -2,10 +2,13 @@ import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { useRouter } from 'next/router';
 import Modal from '../../../base/modal/3.0';
 import BookingModal from './BookingModal';
+import Notification from '../../../base/notification/1.0';
 
 const Booking = () => {
+  const router = useRouter();
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [weeks, setWeeks] = useState(0);
@@ -28,6 +31,28 @@ const Booking = () => {
     setTwoNumber(0);
     setThreeNumber(0);
     setBookingActive(false);
+  };
+
+  const handleBooking = () => {
+    const totalNumber = parseInt(oneNumber) + parseInt(twoNumber) + parseInt(threeNumber);
+    if (weeks <= 4 && totalNumber > 5) {
+      Notification({
+        icon: 'failed',
+        message: '未满足寄存条件',
+        description: '寄存4周内的，寄存上限为5箱',
+      });
+      return;
+    }
+    const orderInfo = {
+      oneNumber,
+      twoNumber,
+      threeNumber,
+      weeks,
+      startDate: startDate.getTime(),
+      endDate: endDate.getTime(),
+    };
+    sessionStorage.orderInfo = JSON.stringify(orderInfo);
+    router.push('/deposit/confirm');
   };
 
   const handleOneNumber = e => {
@@ -189,7 +214,7 @@ const Booking = () => {
                 active={bookingActive}
                 onClick={
                   () => {
-                    if (bookingActive) setBookingModal(true);
+                    if (bookingActive) handleBooking();
                   }
                 }
               >

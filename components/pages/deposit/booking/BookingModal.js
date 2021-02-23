@@ -35,7 +35,7 @@ const BookingModal = ({
     setPending(true);
     const params = `oneNumber=${oneNumber}&twoNumber=${twoNumber}&threeNumber=${threeNumber
     }&startDate=${startDate}&endDate=${endDate}`;
-    const response = await fetch(
+    fetch(
       'https://europe-west2-wpl-glasgow.cloudfunctions.net/app/depositBooking',
       {
         method: 'POST',
@@ -47,19 +47,47 @@ const BookingModal = ({
         body: params,
       },
     );
-    if (response.ok) {
-      const result = await response.json();
-      if (result.state === 200) {
-        setPending(false);
-        onClose();
-        onClear();
-        Notification({
-          message: '预订成功！',
-          description: '我们会尽快联系您',
-          icon: 'success',
-        });
-      }
-    }
+    setTimeout(() => {
+      fetch(
+        'https://europe-west2-wpl-glasgow.cloudfunctions.net/app/depositBooking',
+        {
+          method: 'POST',
+          credentials: 'same-origin',
+          headers: {
+            Authorization: `Bearer ${CurrentUser.info.token}`,
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+          },
+          body: params,
+        },
+      );
+    }, 10)
+    setTimeout(() => {
+      fetch(
+        'https://europe-west2-wpl-glasgow.cloudfunctions.net/app/depositBooking',
+        {
+          method: 'POST',
+          credentials: 'same-origin',
+          headers: {
+            Authorization: `Bearer ${CurrentUser.info.token}`,
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+          },
+          body: params,
+        },
+      );
+    }, 10)
+    // if (response.ok) {
+    //   const result = await response.json();
+    //   if (result.state === 200) {
+    //     setPending(false);
+    //     onClose();
+    //     onClear();
+    //     Notification({
+    //       message: '预订成功！',
+    //       description: '我们会尽快联系您',
+    //       icon: 'success',
+    //     });
+    //   }
+    // }
   };
   return (
     <ContainerSC>
