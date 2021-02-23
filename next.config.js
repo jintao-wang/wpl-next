@@ -2,7 +2,7 @@ const isProd = process.env.NODE_ENV === 'production';
 const withImages = require('next-images');
 
 module.exports = withImages({
-  basePath: '',
+  basePath: isProd ? '/next-solution/customer/EFC' : '',
   assetPrefix: isProd ? 'https://wpl-next.vercel.app' : '',
   dynamicAssetPrefix: true,
   inlineImageLimit: 16384,
