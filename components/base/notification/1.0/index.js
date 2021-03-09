@@ -18,6 +18,20 @@ const SuccessIcon = () => (
   </svg>
 );
 
+const WarningIcon = () => (
+  <svg
+    className="icon"
+    viewBox="0 0 1024 1024"
+    width="24"
+    height="24"
+  >
+    <path
+      d="M512 794.026667a44.8 44.8 0 1 1 44.8-44.8A44.8 44.8 0 0 1 512 794.026667z m-40.106667-563.2a40.106667 40.106667 0 0 1 80.213334 0v369.066666a40.106667 40.106667 0 0 1-79.786667 0zM512 0a512 512 0 1 0 512 512A512 512 0 0 0 512 0z"
+      fill="#FAAE13"
+    />
+  </svg>
+);
+
 const FailedIcon = () => (
   <svg
     className="icon"
@@ -31,6 +45,19 @@ const FailedIcon = () => (
     />
   </svg>
 );
+
+const getIcon = (icon) => {
+  switch (icon) {
+    case 'success':
+      return <SuccessIcon />;
+    case 'warning':
+      return <WarningIcon />;
+    case 'failed':
+      return <FailedIcon />;
+    default:
+      return null;
+  }
+};
 
 const NotificationRender = ({
   message,
@@ -46,19 +73,9 @@ const NotificationRender = ({
     }, duration || 4000);
   }, []);
 
-  const getIcon = () => {
-    switch (icon) {
-      case 'success':
-        return <SuccessIcon />;
-      case 'failed':
-        return <FailedIcon />;
-      default:
-        return null;
-    }
-  };
   const handleClose = () => {
     setVisible(false);
-  }
+  };
   return (
     <Animation
       visible={visible}
@@ -79,7 +96,7 @@ const NotificationRender = ({
           </svg>
         </CloseSC>
         <div className="title">
-          {getIcon()}
+          {getIcon(icon)}
           <span>{message}</span>
         </div>
         <div className="description">{description}</div>

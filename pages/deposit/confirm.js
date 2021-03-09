@@ -132,8 +132,9 @@ const Confirm = () => {
         setPending(false);
         Notification({
           message: '预订成功！',
-          description: '我们会尽快联系您',
+          description: '我们会优先通过微信联系您，请留意好友申请',
           icon: 'success',
+          duration: 8000,
         });
       } else {
         setPending(false);

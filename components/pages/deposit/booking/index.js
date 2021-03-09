@@ -36,9 +36,10 @@ const Booking = () => {
   const handleBooking = () => {
     const totalNumber = parseInt(oneNumber) + parseInt(twoNumber) + parseInt(threeNumber);
     if (weeks <= 4 && totalNumber > 5) {
+      const times = Math.ceil(totalNumber / 5);
       Notification({
-        icon: 'failed',
-        message: '未满足寄存条件',
+        icon: 'warning',
+        message: `请分${times}次预定`,
         description: '寄存4周内的，寄存上限为5箱',
       });
       return;
