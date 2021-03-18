@@ -19,7 +19,7 @@ const ContainerSC = styled.div`
   height: 350px;
   display: flex;
   justify-content: center;
-  background:  rgb(250, 191, 64) url('/deposit/banner.png') center / cover;
+  background:  rgb(250, 191, 64) url('/deposit/banner-2.jpg') center / cover;
   
   .container {
      width: 1200px;
@@ -27,8 +27,9 @@ const ContainerSC = styled.div`
      align-items: center;
      
      .words {
-      margin-left: 40px;
-      color: #333333;
+       margin-left: 40px;
+       color: rgba(254,254,255,1);
+       text-shadow: rgba(0,0,0,1) 5px 0 5px;
       
       .word1 {
         font-size: 50px;
@@ -45,8 +46,9 @@ const ContainerSC = styled.div`
       .word3 {
         margin-top: 5px;
         margin-left: 5px;        
-        font-size: 24px;
+        font-size: 20px;
         letter-spacing: 2px;
+        color: rgba(254,254,255,0.8);
       }
      }
   }

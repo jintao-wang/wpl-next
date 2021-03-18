@@ -17,6 +17,7 @@ const Confirm = () => {
   const [orderInfo, setOrderInfo] = useState(null);
   const [pending, setPending] = useState(false);
   const nameRef = useRef(null);
+  const wechatRef = useRef(null);
   const phoneRef = useRef(null);
   const codeRef = useRef(null);
   const addressRef = useRef(null);
@@ -73,6 +74,7 @@ const Confirm = () => {
     }
     setAddressInfo({
       name: nameEditRef.current.value,
+      wechat: wechatRef.current.value,
       phone: phoneEditRef.current.value,
       code: codeEditRef.current.value,
       address: addressEditRef.current.value,
@@ -97,6 +99,7 @@ const Confirm = () => {
     }
     setAddressInfo({
       name: nameRef.current.value,
+      wechat: wechatRef.current.value,
       phone: phoneRef.current.value,
       code: codeRef.current.value,
       address: addressRef.current.value,
@@ -132,10 +135,12 @@ const Confirm = () => {
         setPending(false);
         Notification({
           message: '预订成功！',
-          description: '我们会优先通过微信联系您，请留意好友申请',
+          description: '我们会优先通过微信联系您，请留意好友申请。 您也可以扫码加WPL客服微信',
+          imgSrc: '/footer/Wechat_1.jpeg',
           icon: 'success',
-          duration: 8000,
+          duration: 100000,
         });
+        router.push('/');
       } else {
         setPending(false);
         Notification({
@@ -209,6 +214,10 @@ const Confirm = () => {
                               <input className="input" defaultValue={addressInfo.name} ref={nameEditRef} />
                             </div>
                             <div className="add-line">
+                              <span className="label">微信：</span>
+                              <input className="input" defaultValue={addressInfo.wechat} ref={addressInfo} />
+                            </div>
+                            <div className="add-line">
                               <span className="label">电话：</span>
                               <input className="input" type="phone" defaultValue={addressInfo.phone} ref={phoneEditRef} />
                             </div>
@@ -256,6 +265,10 @@ const Confirm = () => {
                             <div className="add-line">
                               <span className="label">姓名：</span>
                               <input className="input" ref={nameRef} />
+                            </div>
+                            <div className="add-line">
+                              <span className="label">微信：</span>
+                              <input className="input" ref={wechatRef} />
                             </div>
                             <div className="add-line">
                               <span className="label">电话：</span>

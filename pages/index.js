@@ -120,7 +120,7 @@ const BannerSC = styled.div`
   height: 350px;
   display: flex;
   justify-content: center;
-  background: url('/home/header.jpg') center / cover;
+  background: url('/home/banner.jpg') center / cover;
   
   .container {
      width: 1200px;
@@ -128,7 +128,8 @@ const BannerSC = styled.div`
      align-items: center;
      
      .words {
-      margin-left: 40px;
+       margin-left: 40px;
+       text-shadow: 5px 5px 10px rgba(0,0,0,1);
       
       .en {
         color: rgba(254,254,255,1);

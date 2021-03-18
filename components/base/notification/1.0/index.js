@@ -63,6 +63,7 @@ const NotificationRender = ({
   message,
   description,
   icon,
+  imgSrc,
   duration,
   onClose,
 }) => {
@@ -100,6 +101,9 @@ const NotificationRender = ({
           <span>{message}</span>
         </div>
         <div className="description">{description}</div>
+        {
+          imgSrc && <ImgSC src={imgSrc} />
+        }
       </ContainerSC>
     </Animation>
   );
@@ -109,6 +113,7 @@ const Notification = ({
   icon,
   message,
   description,
+  imgSrc,
   duration,
 }) => {
   const container = document.createElement('div');
@@ -126,6 +131,7 @@ const Notification = ({
         icon,
         message,
         description,
+        imgSrc,
         duration,
         onClose: clear,
       },
@@ -138,6 +144,7 @@ NotificationRender.propTypes = {
   icon: PropTypes.string || null,
   message: PropTypes.string,
   description: PropTypes.string,
+  imgSrc: PropTypes.string || null,
   duration: PropTypes.number,
   onClose: PropTypes.func,
 };
@@ -146,6 +153,7 @@ NotificationRender.defaultProps = {
   icon: null,
   message: 'wangjintao',
   description: 'I will never close automatically',
+  imgSrc: null,
   duration: 4000,
   onClose: () => {},
 };
@@ -181,7 +189,7 @@ const ContainerSC = styled('div', 'icon, aniTrigger')`
   right: -240px;
   top: 24px;
   background: white;
-  border-radius: 2px;
+  border-radius: 4px;
   padding: 16px 24px;
   box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
   animation: ${(props) => notificationFadeCss(props.aniTrigger)};
@@ -207,4 +215,8 @@ const CloseSC = styled('div')`
   right: 15px;
   top: 13px;
   cursor: pointer;
+`;
+const ImgSC = styled('img')`
+  width: inherit;
+  margin-top: 20px;
 `;
