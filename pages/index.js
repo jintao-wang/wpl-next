@@ -37,7 +37,7 @@ export default () => (
             )}
             p1="全球直邮"
             p2="200多个国家"
-            backgroundImg="/home/airplane.png"
+            backgroundImg="/home/airplane.jpg"
             toLeftColor="rgb(72, 191, 221)"
           />
           <Card
@@ -53,7 +53,7 @@ export default () => (
             )}
             p1="海淘转运"
             p2=""
-            backgroundImg="/home/shop.png"
+            backgroundImg="/home/shop.jpg"
             toLeftColor="rgb(84, 147, 225)"
           />
           <Card
@@ -70,7 +70,7 @@ export default () => (
             )}
             p1="包税直邮"
             p2="(中国)"
-            backgroundImg="/home/taxFree.png"
+            backgroundImg="/home/taxFree.jpg"
             toLeftColor="rgb(236, 136, 76)"
           />
           <Card
@@ -87,7 +87,7 @@ export default () => (
             )}
             p1="不包税直邮"
             p2="(中国)"
-            backgroundImg="/home/tax.png"
+            backgroundImg="/home/tax.jpg"
             toLeftColor="rgba(213,89,78,1)"
           />
           <Card
@@ -104,7 +104,7 @@ export default () => (
             )}
             p1="行李邮寄"
             p2="(中国)"
-            backgroundImg="/home/luggage.png"
+            backgroundImg="/home/luggage.jpg"
             toLeftColor="rgba(10,78,176,1)"
           />
         </CardsSC>
