@@ -8,6 +8,7 @@ export default () => (
   <ContainerSC>
     <Header />
     <BannerSC>
+      <img className="airplane" src="/home/airplane-big.png" alt="" />
       <div className="container">
         <div className="words">
           <div className="en">INTERNATIONAL PARCEL SERVICE</div>
@@ -120,14 +121,18 @@ const BannerSC = styled.div`
   height: 350px;
   display: flex;
   justify-content: center;
-  background: url('/home/banner.jpg') center / cover;
+  background: url('/home/banner-4.jpg') center / cover;
+  position: relative;
   
   .container {
-     width: 1200px;
-     display: flex;
-     align-items: center;
+    width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
      
-     .words {
+    .words {
        margin-left: 40px;
        text-shadow: 5px 5px 10px rgba(0,0,0,1);
       
@@ -153,6 +158,16 @@ const BannerSC = styled.div`
         letter-spacing: 2px;
       }
      }
+  }
+
+  .airplane {
+    position: absolute;
+    right: 100px;
+    height: 150px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 1;
   }
 `;
 const ContentSC = styled.div`
