@@ -11,7 +11,7 @@ const usePcMobileRedirect = () => {
       router.push(`/mobile${pathname}`);
     } else {
       if (!window.location.href.includes('mobile')) return;
-      const newPathName = pathname.substring('mobile', '');
+      const newPathName = pathname.replace('/mobile', '');
       router.push(newPathName);
     }
   }, []);
