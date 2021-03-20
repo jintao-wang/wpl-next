@@ -5,18 +5,22 @@ import Footer from '../../components/layout/footer';
 import Banner from '../../components/pages/deposit/banner';
 import PriceDisplay from '../../components/pages/deposit/price_display';
 import Booking from '../../components/pages/deposit/booking';
+import usePcMobileRedirect from '../../hooks/usePcMobileRedirect';
 
-export default () => (
-  <ContainerSC>
-    <Header />
-    <Banner />
-    <ContentSC>
-      <PriceDisplay />
-      <Booking />
-    </ContentSC>
-    <Footer />
-  </ContainerSC>
-);
+export default () => {
+  usePcMobileRedirect();
+  return (
+    <ContainerSC>
+      <Header />
+      <Banner />
+      <ContentSC>
+        <PriceDisplay />
+        <Booking />
+      </ContentSC>
+      <Footer />
+    </ContainerSC>
+  );
+};
 
 const ContainerSC = styled.div`
 `;

@@ -5,7 +5,7 @@ import HeaderMain from './HeaderMain';
 
 const Header = () => (
   <ContainerSC>
-    <HeaderTop />
+    {/*<HeaderTop />*/}
     <HeaderMain />
   </ContainerSC>
 );

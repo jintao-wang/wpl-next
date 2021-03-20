@@ -4,15 +4,16 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 
 const Card = ({
-                backgroundImg,
-                icon,
-                p1,
-                p2,
-                toLeftColor,
-              }) => {
+  href,
+  backgroundImg,
+  icon,
+  p1,
+  p2,
+  toLeftColor,
+}) => {
   useEffect(() => {}, []);
   return (
-    <Link href="/">
+    <Link href={href}>
       <ContainerSC>
         <TopPartSC img={backgroundImg}>
           <div className="roundness">
@@ -45,6 +46,7 @@ Card.propTypes = {
   p2: PropTypes.string,
   toLeftColor: PropTypes.string,
   backgroundImg: PropTypes.string,
+  href: PropTypes.string,
 };
 Card.defaultProps = {
   icon: <svg />,
@@ -52,13 +54,14 @@ Card.defaultProps = {
   p2: '(中国)',
   toLeftColor: 'rgba(84,147,224,0.8)',
   backgroundImg: '',
+  href: '/',
 };
 
 export default Card;
 
 const ContainerSC = styled.div`
-  width: 200px;
-  height: 256px;
+  width: 160px;
+  height: 200px;
   text-decoration: none;
   font-size: 22px;
   letter-spacing:2px;
@@ -79,7 +82,7 @@ const ContainerSC = styled.div`
   }   
   
   :hover .fontHover {
-    font-size: 20px !important;
+    font-size: 18px !important;
   }
   :hover .bottomHover {
     bottom: 0 !important;
@@ -118,7 +121,7 @@ const ContentPartSC = styled('div', ['fontSize'])`
     justify-content: center;
     flex-direction: column;
     color: #222432;
-    font-size: 18px;
+    font-size: 16px;
     transition: font-size .3s;
 `;
 const ToLeftSC = styled('div', ['color'])`
