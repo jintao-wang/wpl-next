@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from '../../../components/layout/header';
 import usePcMobileRedirect from '../../../hooks/usePcMobileRedirect';
 
 export default () => {
-  usePcMobileRedirect();
+  // usePcMobileRedirect();
 
   return (
     <ContainerSC>
