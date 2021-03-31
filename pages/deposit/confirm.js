@@ -135,7 +135,7 @@ const Confirm = () => {
         setPending(false);
         Notification({
           message: '预订成功！',
-          description: '我们会优先通过微信联系您，请留意好友申请。 您也可以扫码加WPL客服微信',
+          description: '我们会优先通过微信联系您，请留意好友申请。 更改为请您加微信扫码',
           imgSrc: '/footer/Wechat_1.jpeg',
           icon: 'success',
           duration: 100000,
