@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from '../../components/layout/header';
-import Footer from '../../components/layout/footer';
-import Banner from '../../components/pages/deposit/banner';
-import PriceDisplay from '../../components/pages/deposit/price_display';
-import Booking from '../../components/pages/deposit/booking';
+import Header from '../../../components/layout/header/mobile';
+import Banner from '../../../components/pages/deposit/mobile/banner';
+import PriceDisplay from '../../../components/pages/deposit/mobile/price_display';
+import Booking from '../../../components/pages/deposit/mobile/booking';
 
 export default () => (
   <ContainerSC>
@@ -14,7 +13,6 @@ export default () => (
       <PriceDisplay />
       <Booking />
     </ContentSC>
-    <Footer />
   </ContainerSC>
 );
 
