@@ -73,6 +73,7 @@ const ContainerSC = styled.div`
   cursor: pointer;
   display: inline-block;
   margin-bottom: 10px;
+  vertical-align: top;
   
   @media (max-width: 480px) {
     margin-left: 10px;

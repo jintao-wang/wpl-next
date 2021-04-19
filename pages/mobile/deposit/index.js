@@ -4,9 +4,11 @@ import Header from '../../../components/layout/header/mobile';
 import Banner from '../../../components/pages/deposit/mobile/banner';
 import PriceDisplay from '../../../components/pages/deposit/mobile/price_display';
 import Booking from '../../../components/pages/deposit/mobile/booking';
+import CommonHeader from '../../../components/base/common_header';
 
 export default () => (
   <ContainerSC>
+    <CommonHeader title="WPL" />
     <Header />
     <Banner />
     <ContentSC>

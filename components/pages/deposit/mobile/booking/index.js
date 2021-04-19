@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -21,6 +21,15 @@ const Booking = () => {
   const twoRef = useRef(null);
   const threeRef = useRef(null);
   const [isBookingModal, setBookingModal] = useState(false);
+
+  useEffect(() => {
+    const dateInputs = document.getElementsByClassName('react-datepicker__input-container');
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (const item of dateInputs) {
+      item.firstChild.setAttribute('readonly', 'readonly');
+    }
+  }, []);
 
   const clearForm = () => {
     setStartDate(null);
@@ -53,7 +62,7 @@ const Booking = () => {
       endDate: endDate.getTime(),
     };
     sessionStorage.orderInfo = JSON.stringify(orderInfo);
-    router.push('/deposit/confirm');
+    router.push('/mobile/deposit/confirm');
   };
 
   const handleOneNumber = e => {
@@ -174,6 +183,7 @@ const Booking = () => {
               onChange={handleStartChange}
               minDate={new Date()}
               maxDate={maxStart}
+              withPortal
             />
           </DateStyleSC>
           <DateStyleSC selected={endDate}>
@@ -185,6 +195,8 @@ const Booking = () => {
               onChange={handleEndChange}
               minDate={startDate}
               disabled={!startDate}
+              readonly
+              withPortal
             />
           </DateStyleSC>
           <InputSC>
@@ -265,7 +277,7 @@ const BookingFormContainerSC = styled.div`
 const InputSC = styled.div`
   display: flex;
   color: #333333;
-  font-size: 18px;
+  font-size: 16px;
   width: 100%;
   align-items: center;
   margin-bottom: 8px;
@@ -281,14 +293,14 @@ const InputSC = styled.div`
     text-align: center;
     border: 1px solid #a7a7a7;
     outline: none;
-    font-size: 18px;
+    font-size: 14px;
     box-sizing: border-box;
   }
 `;
 const DateStyleSC = styled('div', 'selected')`
     display: flex;
     color: #333333;
-    font-size: 18px;
+    font-size: 16px;
     width: 100%;
     align-items: center;
     margin-bottom: 8px;
@@ -313,7 +325,7 @@ const DateStyleSC = styled('div', 'selected')`
       text-align: center;
       border: 1px solid #a7a7a7;
       outline: none;
-      font-size: ${props => props.selected && '18px'};
+      font-size: ${props => props.selected && '14px'};
       box-sizing: border-box;
     }
 `;
@@ -324,12 +336,14 @@ const BookingSC = styled('div', 'active')`{
       border-radius: 8px;
       background: ${props => (props.active ? '#0a62b0' : 'rgba(10,98,176,0.6)')};
       color: white;
-      display: flex;
       justify-content: center;
       align-items: center;
       font-size: 18px;
       letter-spacing: 2px;
       cursor: ${props => props.active ? 'pointer' : ' not-allowed'};
+      display: inline-flex;
+      margin-left: auto;
+    margin-right: auto;
 }`;
 const AttentionSC = styled.div`
   width: 100%;

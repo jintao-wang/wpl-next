@@ -103,6 +103,7 @@ export default () => (
       </AttentionSC>
       <ImgThreeSC src="/global-shop/642.png" />
       <ImgThreeWordSC>仓库已准备好，包裹轰炸来吧~</ImgThreeWordSC>
+      <WordPriceSC href="/global-shop/2021全世界价格表英文版.pdf">2021全世界价格表英文版(仅供参考)</WordPriceSC>
       <CustomerSC>
         <img src="/global-shop/643.jpeg" alt="" />
         <div className="text">下单后务必尽快联系我们的客服哦，留下您的收件人姓名，这样我们的客服小姐姐能尽快的匹配到您的包裹信息，到货时我们才能第一时间通知您呢！</div>
@@ -135,13 +136,14 @@ export default () => (
 );
 
 const ContainerSC = styled.div`
+  padding-top: 48px;
 `;
 
 const BannerSC = styled.div`
   width: 100%;
   min-height: 100vh;
   background-image: radial-gradient(#9734FA, #7319F9);
-  padding: 100px 0;
+  padding: 60px 0;
 `;
 
 const TitleSC = styled.div`
@@ -222,6 +224,14 @@ const ImgThreeWordSC = styled.div`
   font-weight: 500;
   font-size: 20px;
   text-shadow: 1px 2px 5px rgba(0,0,0,0.5);
+`;
+
+const WordPriceSC = styled.a`
+  width: 100%;
+  font-size: 15px;
+  display: block;
+  text-align: center;
+  margin-top: 10px;
 `;
 
 const ImgFourSC = styled.img`

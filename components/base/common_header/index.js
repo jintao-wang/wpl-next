@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 const CommonHeader = ({ title, children }) => (
   <Head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <link rel="preload" href="/redirect.js" as="script" />
     <script src="/redirect.js" />
     <title>{title}</title>

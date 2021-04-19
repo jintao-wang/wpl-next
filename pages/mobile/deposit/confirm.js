@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
-import HeaderTop from '../../components/layout/header/pc/HeaderTop';
-import Footer from '../../components/layout/footer';
-import Modal from '../../components/base/modal/3.0';
-import { getTime } from '../../util/common';
-import Notification from '../../components/base/notification/1.0';
-import { CurrentUser } from '../../constant';
+import Link from 'next/link';
+import Modal from '../../../components/base/modal/3.0';
+import { getTime } from '../../../util/common';
+import Notification from '../../../components/base/notification/1.0';
+import { CurrentUser } from '../../../constant';
+import CommonHeader from '../../../components/base/common_header';
 
 const Confirm = () => {
   const router = useRouter();
@@ -29,7 +29,7 @@ const Confirm = () => {
     if (sessionStorage.orderInfo) {
       setOrderInfo(JSON.parse(sessionStorage.orderInfo));
     } else {
-      router.push('/deposit');
+      router.push('/mobile/deposit');
     }
   }, []);
   const getPrice = () => {
@@ -140,7 +140,7 @@ const Confirm = () => {
           icon: 'success',
           duration: 100000,
         });
-        router.push('/');
+        router.push('/mobile');
       } else {
         setPending(false);
         Notification({
@@ -160,274 +160,277 @@ const Confirm = () => {
   };
 
   return (
-    <ContainerSC>
-      <HeaderTop />
-      <ContentSC>
-        <TopSC>
-          <div className="content">
-            <img
-              className="logo"
-              src="/wpl_logo.png"
-              alt=""
-            />
-            <div className="word">确认订单</div>
-          </div>
-        </TopSC>
-        <OrderSC>
-          <OrderContentSC>
-            <AddressContainerSC>
-              <div className="address-title">取件地址</div>
-              <div className="address-all">
-                {
-                  addressInfo ? (
-                    <AddressSC>
-                      <div className="name">{addressInfo.name}</div>
-                      <div className="phone">{addressInfo.phone}</div>
-                      <div className="code">{addressInfo.code}</div>
-                      <div className="address">{addressInfo.address}</div>
-                      <Modal
-                        visible={isEdit}
-                        closeFunc={() => setEdit(false)}
-                        content={(
-                          <AddAddressModalSC>
-                            <CloseSC onClick={() => setEdit(false)}>
-                              <svg
-                                t="1612785238881"
-                                className="icon"
-                                viewBox="0 0 1024 1024"
-                                version="1.1"
-                                xmlns="http://www.w3.org/2000/svg"
-                                p-id="5388"
-                                width="28"
-                                height="28"
-                              >
-                                <path
-                                  d="M810.666667 273.493333L750.506667 213.333333 512 451.84 273.493333 213.333333 213.333333 273.493333 451.84 512 213.333333 750.506667 273.493333 810.666667 512 572.16 750.506667 810.666667 810.666667 750.506667 572.16 512z"
-                                  p-id="5389"
-                                  fill="#333333"
-                                />
-                              </svg>
-                            </CloseSC>
-                            <div className="add-title">修改取件地址</div>
-                            <div className="add-line">
-                              <span className="label">姓名：</span>
-                              <input className="input" defaultValue={addressInfo.name} ref={nameEditRef} />
-                            </div>
-                            <div className="add-line">
-                              <span className="label">微信：</span>
-                              <input className="input" defaultValue={addressInfo.wechat} ref={addressInfo} />
-                            </div>
-                            <div className="add-line">
-                              <span className="label">电话：</span>
-                              <input className="input" type="phone" defaultValue={addressInfo.phone} ref={phoneEditRef} />
-                            </div>
-                            <div className="add-line">
-                              <span className="label">邮编：</span>
-                              <input className="input" defaultValue={addressInfo.code} ref={codeEditRef} />
-                            </div>
-                            <div className="add-line">
-                              <span className="label">详细地址：</span>
-                              <textarea className="textarea" defaultValue={addressInfo.address} ref={addressEditRef} />
-                            </div>
-                            <ErrorMessageSC>{errInfo}</ErrorMessageSC>
-                            <SubmitSC canClick onClick={handleEditSubmit}>确认</SubmitSC>
-                          </AddAddressModalSC>
-                        )}
-                        trigger={(<div className="edit" onClick={() => setEdit(true)}>修改</div>)}
-                      />
-                    </AddressSC>
-                  )
-                    : (
-                      <Modal
-                        visible={isAdd}
-                        closeFunc={() => setAdd(false)}
-                        content={(
-                          <AddAddressModalSC>
-                            <CloseSC onClick={() => setAdd(false)}>
-                              <svg
-                                t="1612785238881"
-                                className="icon"
-                                viewBox="0 0 1024 1024"
-                                version="1.1"
-                                xmlns="http://www.w3.org/2000/svg"
-                                p-id="5388"
-                                width="28"
-                                height="28"
-                              >
-                                <path
-                                  d="M810.666667 273.493333L750.506667 213.333333 512 451.84 273.493333 213.333333 213.333333 273.493333 451.84 512 213.333333 750.506667 273.493333 810.666667 512 572.16 750.506667 810.666667 810.666667 750.506667 572.16 512z"
-                                  p-id="5389"
-                                  fill="#333333"
-                                />
-                              </svg>
-                            </CloseSC>
-                            <div className="add-title">添加取件地址</div>
-                            <div className="add-line">
-                              <span className="label">姓名：</span>
-                              <input className="input" ref={nameRef} />
-                            </div>
-                            <div className="add-line">
-                              <span className="label">微信：</span>
-                              <input className="input" ref={wechatRef} />
-                            </div>
-                            <div className="add-line">
-                              <span className="label">电话：</span>
-                              <input className="input" type="phone" ref={phoneRef} />
-                            </div>
-                            <div className="add-line">
-                              <span className="label">邮编：</span>
-                              <input className="input" ref={codeRef} />
-                            </div>
-                            <div className="add-line">
-                              <span className="label">详细地址：</span>
-                              <textarea className="textarea" ref={addressRef} />
-                            </div>
-                            <ErrorMessageSC>{errInfo}</ErrorMessageSC>
-                            <SubmitSC canClick onClick={handleAddressSubmit}>确认</SubmitSC>
-                          </AddAddressModalSC>
-                        )}
-                        trigger={(
-                          <AddAddressSC onClick={() => setAdd(true)}>
-                            <svg
-                              className="icon"
-                              viewBox="0 0 1024 1024"
-                              width="40"
-                              height="40"
-                            >
-                              <path
-                                d="M512.006827 1020.59008C231.120213 1020.59008 3.413333 792.85248 3.413333 512.003413S231.120213 3.40992 512.006827 3.40992 1020.586667 231.1168 1020.586667 512.003413c0 280.89344-227.730773 508.586667-508.57984 508.586667z m278.278826-537.378133a19.13856 19.13856 0 0 0-19.135146-19.135147h-211.162454V252.914347a19.135147 19.135147 0 0 0-19.135146-19.135147H483.2256a19.135147 19.135147 0 0 0-19.13856 19.135147v211.11808H252.91776a19.135147 19.135147 0 0 0-19.135147 19.13856v57.57952a19.135147 19.135147 0 0 0 19.135147 19.135146h211.121493v211.2a19.135147 19.135147 0 0 0 19.135147 19.13856h57.57952a19.13856 19.13856 0 0 0 19.13856-19.13856v-211.101013h211.2a19.135147 19.135147 0 0 0 19.131733-19.13856l0.06144-57.634133z"
-                                p-id="7335"
-                                fill="#E0E0E0"
-                              />
-                            </svg>
-                            <div className="add">添加新地址</div>
-                          </AddAddressSC>
-                        )}
-                      />
+    <>
+      <CommonHeader title="WPL" />
+      <ContainerSC>
+        <ContentSC>
+          <TopSC>
+            <div className="content">
+              <Link href="/mobile">
+                <img
+                  className="logo"
+                  src="/wpl_logo.png"
+                  alt=""
+                />
+              </Link>
+              <div className="word">确认订单</div>
+            </div>
+          </TopSC>
+          <OrderSC>
+            <OrderContentSC>
+              <AddressContainerSC>
+                <div className="address-title">取件地址</div>
+                <div className="address-all">
+                  {
+                    addressInfo ? (
+                      <AddressSC>
+                        <div className="name">{addressInfo.name}</div>
+                        <div className="phone">{addressInfo.phone}</div>
+                        <div className="code">{addressInfo.code}</div>
+                        <div className="address">{addressInfo.address}</div>
+                        <Modal
+                          visible={isEdit}
+                          closeFunc={() => setEdit(false)}
+                          content={(
+                            <AddAddressModalSC>
+                              <CloseSC onClick={() => setEdit(false)}>
+                                <svg
+                                  t="1612785238881"
+                                  className="icon"
+                                  viewBox="0 0 1024 1024"
+                                  version="1.1"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  p-id="5388"
+                                  width="28"
+                                  height="28"
+                                >
+                                  <path
+                                    d="M810.666667 273.493333L750.506667 213.333333 512 451.84 273.493333 213.333333 213.333333 273.493333 451.84 512 213.333333 750.506667 273.493333 810.666667 512 572.16 750.506667 810.666667 810.666667 750.506667 572.16 512z"
+                                    p-id="5389"
+                                    fill="#333333"
+                                  />
+                                </svg>
+                              </CloseSC>
+                              <div className="add-title">修改取件地址</div>
+                              <div className="add-line">
+                                <span className="label">姓名：</span>
+                                <input className="input" defaultValue={addressInfo.name} ref={nameEditRef} />
+                              </div>
+                              <div className="add-line">
+                                <span className="label">微信：</span>
+                                <input className="input" defaultValue={addressInfo.wechat} ref={addressInfo} />
+                              </div>
+                              <div className="add-line">
+                                <span className="label">电话：</span>
+                                <input className="input" type="phone" defaultValue={addressInfo.phone} ref={phoneEditRef} />
+                              </div>
+                              <div className="add-line">
+                                <span className="label">邮编：</span>
+                                <input className="input" defaultValue={addressInfo.code} ref={codeEditRef} />
+                              </div>
+                              <div className="add-line">
+                                <span className="label">详细地址：</span>
+                                <textarea className="textarea" defaultValue={addressInfo.address} ref={addressEditRef} />
+                              </div>
+                              <ErrorMessageSC>{errInfo}</ErrorMessageSC>
+                              <SubmitSC canClick onClick={handleEditSubmit}>确认</SubmitSC>
+                            </AddAddressModalSC>
+                            )}
+                          trigger={(<div className="edit" onClick={() => setEdit(true)}>修改</div>)}
+                        />
+                      </AddressSC>
                     )
-                }
-              </div>
-            </AddressContainerSC>
-            <OrderDetailContainerSC>
-              <div className="order-title">订单详情</div>
-              <div className="order-line">
-                <span className="label">吉他/中箱/登机箱数量: </span>
-                <span className="info">{orderInfo?.oneNumber}</span>
-              </div>
-              <div className="order-line">
-                <span className="label">大箱数量: </span>
-                <span className="info">{orderInfo?.twoNumber}</span>
-              </div>
-              <div className="order-line">
-                <span className="label">行李箱/超出尺寸箱数量: </span>
-                <span className="info">{orderInfo?.threeNumber}</span>
-              </div>
-              <div className="order-line">
-                <span className="label">寄存周数: </span>
-                <span className="info">{orderInfo?.weeks}</span>
-              </div>
-              <div className="order-line">
-                <span className="label">寄存开始时间: </span>
-                <span className="info">{getTime(orderInfo?.startDate).format('yyyy-MM-dd')}</span>
-              </div>
-              <div className="order-line">
-                <span className="label">寄存结束时间: </span>
-                <span className="info">{getTime(orderInfo?.endDate).format('yyyy-MM-dd')}</span>
-              </div>
-              <div className="order-line">
-                <span className="label">寄存价格: </span>
-                <span className="info">
-                  £
-                  {orderInfo && getPrice()}
-                </span>
-              </div>
-            </OrderDetailContainerSC>
-            <OrderSubmitContainerSC active={!pending}>
-              <div className="submit" onClick={handleSubmit}>
-                {
-                  pending ? (
-                    <svg
-                      style={{
-                        margin: 'auto',
-                        display: 'block',
-                        shapeRendering: 'auto',
-                      }}
-                      width="32px"
-                      height="32px"
-                      viewBox="0 0 100 100"
-                      preserveAspectRatio="xMidYMid"
-                    >
-                      <g transform="rotate(0 50 50)">
-                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
-                          <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.9166666666666666s" repeatCount="indefinite" />
-                        </rect>
-                      </g>
-                      <g transform="rotate(30 50 50)">
-                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
-                          <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.8333333333333334s" repeatCount="indefinite" />
-                        </rect>
-                      </g>
-                      <g transform="rotate(60 50 50)">
-                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
-                          <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.75s" repeatCount="indefinite" />
-                        </rect>
-                      </g>
-                      <g transform="rotate(90 50 50)">
-                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
-                          <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.6666666666666666s" repeatCount="indefinite" />
-                        </rect>
-                      </g>
-                      <g transform="rotate(120 50 50)">
-                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
-                          <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5833333333333334s" repeatCount="indefinite" />
-                        </rect>
-                      </g>
-                      <g transform="rotate(150 50 50)">
-                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
-                          <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5s" repeatCount="indefinite" />
-                        </rect>
-                      </g>
-                      <g transform="rotate(180 50 50)">
-                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
-                          <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.4166666666666667s" repeatCount="indefinite" />
-                        </rect>
-                      </g>
-                      <g transform="rotate(210 50 50)">
-                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
-                          <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.3333333333333333s" repeatCount="indefinite" />
-                        </rect>
-                      </g>
-                      <g transform="rotate(240 50 50)">
-                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
-                          <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.25s" repeatCount="indefinite" />
-                        </rect>
-                      </g>
-                      <g transform="rotate(270 50 50)">
-                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
-                          <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.16666666666666666s" repeatCount="indefinite" />
-                        </rect>
-                      </g>
-                      <g transform="rotate(300 50 50)">
-                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
-                          <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.08333333333333333s" repeatCount="indefinite" />
-                        </rect>
-                      </g>
-                      <g transform="rotate(330 50 50)">
-                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
-                          <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite" />
-                        </rect>
-                      </g>
-                    </svg>
-                  )
-                    : <span>确认</span>
-                }
-              </div>
-            </OrderSubmitContainerSC>
-          </OrderContentSC>
-        </OrderSC>
-      </ContentSC>
-      <Footer />
-    </ContainerSC>
+                      : (
+                        <Modal
+                          visible={isAdd}
+                          closeFunc={() => setAdd(false)}
+                          content={(
+                            <AddAddressModalSC>
+                              <CloseSC onClick={() => setAdd(false)}>
+                                <svg
+                                  t="1612785238881"
+                                  className="icon"
+                                  viewBox="0 0 1024 1024"
+                                  version="1.1"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  p-id="5388"
+                                  width="28"
+                                  height="28"
+                                >
+                                  <path
+                                    d="M810.666667 273.493333L750.506667 213.333333 512 451.84 273.493333 213.333333 213.333333 273.493333 451.84 512 213.333333 750.506667 273.493333 810.666667 512 572.16 750.506667 810.666667 810.666667 750.506667 572.16 512z"
+                                    p-id="5389"
+                                    fill="#333333"
+                                  />
+                                </svg>
+                              </CloseSC>
+                              <div className="add-title">添加取件地址</div>
+                              <div className="add-line">
+                                <span className="label">姓名：</span>
+                                <input className="input" ref={nameRef} />
+                              </div>
+                              <div className="add-line">
+                                <span className="label">微信：</span>
+                                <input className="input" ref={wechatRef} />
+                              </div>
+                              <div className="add-line">
+                                <span className="label">电话：</span>
+                                <input className="input" type="phone" ref={phoneRef} />
+                              </div>
+                              <div className="add-line">
+                                <span className="label">邮编：</span>
+                                <input className="input" ref={codeRef} />
+                              </div>
+                              <div className="add-line">
+                                <span className="label">详细地址：</span>
+                                <textarea className="textarea" ref={addressRef} />
+                              </div>
+                              <ErrorMessageSC>{errInfo}</ErrorMessageSC>
+                              <SubmitSC canClick onClick={handleAddressSubmit}>确认</SubmitSC>
+                            </AddAddressModalSC>
+                          )}
+                          trigger={(
+                            <AddAddressSC onClick={() => setAdd(true)}>
+                              <svg
+                                className="icon"
+                                viewBox="0 0 1024 1024"
+                                width="40"
+                                height="40"
+                              >
+                                <path
+                                  d="M512.006827 1020.59008C231.120213 1020.59008 3.413333 792.85248 3.413333 512.003413S231.120213 3.40992 512.006827 3.40992 1020.586667 231.1168 1020.586667 512.003413c0 280.89344-227.730773 508.586667-508.57984 508.586667z m278.278826-537.378133a19.13856 19.13856 0 0 0-19.135146-19.135147h-211.162454V252.914347a19.135147 19.135147 0 0 0-19.135146-19.135147H483.2256a19.135147 19.135147 0 0 0-19.13856 19.135147v211.11808H252.91776a19.135147 19.135147 0 0 0-19.135147 19.13856v57.57952a19.135147 19.135147 0 0 0 19.135147 19.135146h211.121493v211.2a19.135147 19.135147 0 0 0 19.135147 19.13856h57.57952a19.13856 19.13856 0 0 0 19.13856-19.13856v-211.101013h211.2a19.135147 19.135147 0 0 0 19.131733-19.13856l0.06144-57.634133z"
+                                  p-id="7335"
+                                  fill="#E0E0E0"
+                                />
+                              </svg>
+                              <div className="add">添加新地址</div>
+                            </AddAddressSC>
+                          )}
+                        />
+                      )
+                  }
+                </div>
+              </AddressContainerSC>
+              <OrderDetailContainerSC>
+                <div className="order-title">订单详情</div>
+                <div className="order-line">
+                  <span className="label">吉他/中箱/登机箱数量: </span>
+                  <span className="info">{orderInfo?.oneNumber}</span>
+                </div>
+                <div className="order-line">
+                  <span className="label">大箱数量: </span>
+                  <span className="info">{orderInfo?.twoNumber}</span>
+                </div>
+                <div className="order-line">
+                  <span className="label">行李箱/超出尺寸箱数量: </span>
+                  <span className="info">{orderInfo?.threeNumber}</span>
+                </div>
+                <div className="order-line">
+                  <span className="label">寄存周数: </span>
+                  <span className="info">{orderInfo?.weeks}</span>
+                </div>
+                <div className="order-line">
+                  <span className="label">寄存开始时间: </span>
+                  <span className="info">{getTime(orderInfo?.startDate).format('yyyy-MM-dd')}</span>
+                </div>
+                <div className="order-line">
+                  <span className="label">寄存结束时间: </span>
+                  <span className="info">{getTime(orderInfo?.endDate).format('yyyy-MM-dd')}</span>
+                </div>
+                <div className="order-line">
+                  <span className="label">寄存价格: </span>
+                  <span className="info">
+                    £
+                    {orderInfo && getPrice()}
+                  </span>
+                </div>
+              </OrderDetailContainerSC>
+              <OrderSubmitContainerSC active={!pending}>
+                <div className="submit" onClick={handleSubmit}>
+                  {
+                    pending ? (
+                      <svg
+                        style={{
+                          margin: 'auto',
+                          display: 'block',
+                          shapeRendering: 'auto',
+                        }}
+                        width="32px"
+                        height="32px"
+                        viewBox="0 0 100 100"
+                        preserveAspectRatio="xMidYMid"
+                      >
+                        <g transform="rotate(0 50 50)">
+                          <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.9166666666666666s" repeatCount="indefinite" />
+                          </rect>
+                        </g>
+                        <g transform="rotate(30 50 50)">
+                          <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.8333333333333334s" repeatCount="indefinite" />
+                          </rect>
+                        </g>
+                        <g transform="rotate(60 50 50)">
+                          <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.75s" repeatCount="indefinite" />
+                          </rect>
+                        </g>
+                        <g transform="rotate(90 50 50)">
+                          <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.6666666666666666s" repeatCount="indefinite" />
+                          </rect>
+                        </g>
+                        <g transform="rotate(120 50 50)">
+                          <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5833333333333334s" repeatCount="indefinite" />
+                          </rect>
+                        </g>
+                        <g transform="rotate(150 50 50)">
+                          <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5s" repeatCount="indefinite" />
+                          </rect>
+                        </g>
+                        <g transform="rotate(180 50 50)">
+                          <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.4166666666666667s" repeatCount="indefinite" />
+                          </rect>
+                        </g>
+                        <g transform="rotate(210 50 50)">
+                          <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.3333333333333333s" repeatCount="indefinite" />
+                          </rect>
+                        </g>
+                        <g transform="rotate(240 50 50)">
+                          <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.25s" repeatCount="indefinite" />
+                          </rect>
+                        </g>
+                        <g transform="rotate(270 50 50)">
+                          <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.16666666666666666s" repeatCount="indefinite" />
+                          </rect>
+                        </g>
+                        <g transform="rotate(300 50 50)">
+                          <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.08333333333333333s" repeatCount="indefinite" />
+                          </rect>
+                        </g>
+                        <g transform="rotate(330 50 50)">
+                          <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#ffffff">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite" />
+                          </rect>
+                        </g>
+                      </svg>
+                    )
+                      : <span>确认</span>
+                  }
+                </div>
+              </OrderSubmitContainerSC>
+            </OrderContentSC>
+          </OrderSC>
+        </ContentSC>
+      </ContainerSC>
+    </>
   );
 };
 
@@ -448,16 +451,17 @@ const TopSC = styled.div`
  .content {
   margin-left: auto;
   margin-right: auto;
-  width: 1200px;
+   width: 100%;
   display: flex;
   align-items: center;
   .logo {
-   height: 46px; 
+   height: 36px; 
    cursor: pointer;
   } 
  .word {
-  margin-left: 40px;
-  font-size: 26px;
+  margin-left: 20px;
+  font-size: 20px;
+   margin-top: 5px;
   color: #424242;
   }
  }
@@ -466,11 +470,11 @@ const TopSC = styled.div`
 const OrderSC = styled.div`
   width: 100%;
   background: #F5F5F5;
-  padding-top: 40px;
+  padding-top: 20px;
 `;
 
 const OrderContentSC = styled.div`
-  width: 1200px;
+  width: 100%;
   min-height: 500px;
   background: white;
   margin-left: auto;
@@ -547,7 +551,7 @@ const AddAddressSC = styled.div`
 `;
 
 const AddAddressModalSC = styled.div`
-  width: 420px;
+  width: 80vw;
   background: white;
   border-radius: 10px;
   padding: 26px 20px;

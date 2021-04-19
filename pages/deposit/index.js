@@ -5,9 +5,11 @@ import Footer from '../../components/layout/footer';
 import Banner from '../../components/pages/deposit/banner';
 import PriceDisplay from '../../components/pages/deposit/price_display';
 import Booking from '../../components/pages/deposit/booking';
+import CommonHeader from '../../components/base/common_header';
 
 export default () => (
   <ContainerSC>
+    <CommonHeader title="WPL" />
     <Header />
     <Banner />
     <ContentSC>

@@ -15,7 +15,7 @@ export default () => (
       <img className="airplane" src="/home/airplane-big.png" alt="" />
       <div className="container">
         <div className="words">
-          <div className="en">INTERNATIONAL PARCEL SERVICE</div>
+          <div className="en">WPL INTERNATIONAL PARCEL SERVICE</div>
           <div className="title">WPL国际物流公司</div>
           <div className="second-title">给您地道的英国生活指南</div>
         </div>

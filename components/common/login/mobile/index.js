@@ -151,7 +151,7 @@ const Login = ({
         <LogUpSC onClick={() => setSignType('signUp')} active={_signType === 'signUp'}>注册</LogUpSC>
       </TitleSC>
       <FormSC>
-        <form>
+        <form className="form">
           <FormLineSC>
             <span>邮件:</span>
             <input
@@ -203,7 +203,7 @@ Login.defaultProps = {
 export default Login;
 
 const ContainerSC = styled.div`
-  width: 520px;
+  width: 88vw;
   background: white;
   display: flex;
   align-items: center;
@@ -223,8 +223,8 @@ const TitleSC = styled('div')`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
-    font-size: 22px;
+    margin-top: 8px;
+    font-size: 18px;
     font-family: -apple-system,SF UI Display,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
     color:  #333333;
     
@@ -239,7 +239,7 @@ const TitleSC = styled('div')`
   
 `;
 const LoginSC = styled('div', ['active'])`
-  padding: 10px;
+  padding: 8px 6px;
   cursor: pointer;
   border-bottom: ${(props) => (props.active ? '#2964b5 2px solid' : 'rgba(41,100,181,0) 2px solid')};
 `;
@@ -249,10 +249,14 @@ const LogUpSC = styled('div', ['active'])`
   border-bottom: ${(props) => (props.active ? '#2964b5 2px solid' : 'rgba(41,100,181,0) 2px solid')};
 `;
 const FormSC = styled('div')`
-  margin-top: 40px;
+  margin-top: 20px;
+  
+  .form {
+    text-align: center;
+  }
 `;
 const FormLineSC = styled('div')`
-  font-size: 20px;
+  font-size: 18px;
   font-family: -apple-system,SF UI Display,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
   color:  #333333;
   margin-bottom: 15px;
@@ -261,7 +265,7 @@ const FormLineSC = styled('div')`
 
   input {
     height: 30px;
-    width: 200px;
+    width: 160px;
     border-radius: 2px;
     border: #e4e6fc solid 1px;
     padding-left: 10px;
@@ -276,15 +280,15 @@ const ErrorMessageSC = styled('div')`
   height: 18px;
 `;
 const SubmitSC = styled('div', ['canClick'])`
-  width: 240px;
-  height: 40px;
+  width: 180px;
+  height: 32px;
   outline:none;
   border-radius: 20px;
   color: white;
-  font-size: 20px;
+  font-size: 18px;
   letter-spacing: 10px;
-  margin-top: 28px;
-  display: flex;
+  margin-top: 10px;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;

@@ -5,13 +5,16 @@ import { emailStore, signedStore } from '../../../../store';
 import app from '../../../../firebase';
 import { CurrentUser } from '../../../../constant';
 import Modal from '../../../base/modal/3.0';
-import Login from '../../../common/login';
+import Login from '../../../common/login/mobile';
 
 const Header = () => {
   const [signType, setSignType] = useState('signIn');
   const [isSignForm, setIsSignForm] = useState(false);
   const [signedState, signedActions] = signedStore.useModel();
   const [emailState, emailActions] = emailStore.useModel();
+
+  // 零时解决方案
+  const [nameActive, setNameActive] = useState(false);
 
   const handleLogout = () => {
     app.auth().signOut().then(() => {
@@ -43,21 +46,11 @@ const Header = () => {
               signedState.isSigned ? (
                 <SignedInfoSC>
                   <div className="text">
-                    <span>{emailState.email}</span>
-                    <svg
-                      viewBox="0 0 1024 1024"
-                      width="20"
-                      height="20"
-                      fill="#333"
-                      style={{ marginBottom: '-1px' }}
-                    >
-                      <path
-                        d="M512 608c-6.4 0-19.2 0-25.6-6.4l-128-128c-12.8-12.8-12.8-32 0-44.8s32-12.8 44.8 0L512 531.2l102.4-102.4c12.8-12.8 32-12.8 44.8 0s12.8 32 0 44.8l-128 128C531.2 608 518.4 608 512 608z"
-                      />
-                    </svg>
+                    <div className="name" onClick={() => setNameActive(!nameActive)}>{emailState.email.slice(0, 1).toUpperCase()}</div>
                   </div>
-                  <div className="line" />
-                  <div className="text" onClick={handleLogout}>退出</div>
+                  {
+                    nameActive && <div className="text" onClick={handleLogout}>退出</div>
+                  }
                 </SignedInfoSC>
               ) : (
                 <Modal
@@ -96,6 +89,11 @@ const Header = () => {
 export default Header;
 
 const ContainerSC = styled.div`
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 10;
   background: white;
   box-shadow: 0 5px 40px -1px rgba(2,10,18,.1)
 `;
@@ -141,17 +139,41 @@ const SignedInfoSC = styled.div`
     cursor: pointer;
     display: flex;
     align-items: center;
+    margin-right: 5px;
+    
+    .name {
+      width: 30px;
+      height: 30px;
+      background: rgba(53,51,154,0.9);
+      border-radius: 50%;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 12px;
+    }
   }
   
+`;
+
+const NoSignedInfoSC = styled('div')`
+  display: flex;
+  align-items: center;
+  
+  .text {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
   .line {
     width: 2px;
     height: 12px;
     margin-left: 10px;
     margin-right: 10px;
+    background: rgba(0,0,0, 0.8);
   }
 `;
-
-const NoSignedInfoSC = styled(SignedInfoSC)``;
 
 const LangSC = styled.div`
   padding: 4px 6px;
