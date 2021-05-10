@@ -49,7 +49,7 @@ const Booking = () => {
       Notification({
         icon: 'warning',
         message: `请分${times}次预定`,
-        description: '寄存4周内的，寄存上限为5箱',
+        description: '寄存4周内的，每个订单寄存上限为5箱',
       });
       return;
     }

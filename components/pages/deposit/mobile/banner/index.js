@@ -19,7 +19,19 @@ const ContainerSC = styled.div`
   height: 30vh;
   display: flex;
   justify-content: center;
-  background:  rgb(250, 191, 64) url('/deposit/banner-2.jpg') center / cover;
+  position: relative;
+
+  ::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: url('/deposit/banner-2.jpg') center / cover;
+    filter: brightness(70%) blur(2px);
+    z-index: -1;
+  }
   
   .container {
      width: 100%;
