@@ -5,6 +5,7 @@ import Banner from '../../../components/pages/deposit/mobile/banner';
 import PriceDisplay from '../../../components/pages/deposit/mobile/price_display';
 import Booking from '../../../components/pages/deposit/mobile/booking';
 import CommonHeader from '../../../components/base/common_header';
+import Footer from "../../../components/layout/footer/mobile";
 
 export default () => (
   <ContainerSC>
@@ -15,6 +16,7 @@ export default () => (
       <PriceDisplay />
       <Booking />
     </ContentSC>
+    <Footer />
   </ContainerSC>
 );
 

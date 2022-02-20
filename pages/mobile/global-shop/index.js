@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../../../components/layout/header/mobile';
+import Footer from "../../../components/layout/footer/mobile";
 
 export default () => (
   <ContainerSC>
@@ -13,7 +14,7 @@ export default () => (
           <div className="lineLeft" />
         </div>
         <div className="word">
-          <div className="first">海淘转运</div>
+          <div className="first">中转服务</div>
           <div className="second">购物狂欢 中转不用愁</div>
         </div>
         <div className="des">
@@ -132,6 +133,7 @@ export default () => (
       <ImgSixWordSC>转运/邮寄“高难度”的物品</ImgSixWordSC>
       <ImgSixWordSC>也可以联系我们的客服哦！</ImgSixWordSC>
     </BannerSC>
+    <Footer />
   </ContainerSC>
 );
 

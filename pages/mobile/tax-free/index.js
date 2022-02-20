@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../../../components/layout/header/mobile';
+import Footer from "../../../components/layout/footer/mobile";
 
 export default () => (
   <ContainerSC>
@@ -149,6 +150,7 @@ export default () => (
         <span className="content">每箱包裹自带丢失险（最高50英镑），保丢不保破损。如需额外购买保险，请联系我们。同时请保存好购物小票</span>
       </InsuranceSC>
     </ContentSC>
+    <Footer />
   </ContainerSC>
 );
 
