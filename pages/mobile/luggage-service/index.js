@@ -41,7 +41,7 @@ export default () => (
           </li>
           <li>
             <span className="normal-color">行李箱包装后</span>
-            <span className="highlight-color">长+宽+高不能超过150cm</span>
+            <span className="highlight-color">{'长 + (宽 + 高)X2 < 250cm'}</span>
           </li>
           <li>
             <span className="normal-color">一箱也是团购价，每箱免费保险£50，不可额外购买保险</span>
@@ -55,11 +55,10 @@ export default () => (
             <span className="highlight-color">时效2-3周</span>
           </li>
         </ul>
-        {/*<p className="attention-container">*/}
-        {/*  <div className="attention">纸箱：0.1-19.5kg以内86镑（纸箱胶带另外收费，如需防磨防水专业包装另付6镑）</div>*/}
-        {/*  <div className="attention">行李箱：0.1-21.5kg以内113镑（需额外付DIY包装费用10镑）</div>*/}
-        {/*</p>*/}
-        <p>空运超重部分收费标准为5镑/kg</p>
+        {/* <p className="attention-container"> */}
+        {/*  <div className="attention">纸箱：0.1-19.5kg以内86镑（纸箱胶带另外收费，如需防磨防水专业包装另付6镑）</div> */}
+        {/*  <div className="attention">行李箱：0.1-21.5kg以内113镑（需额外付DIY包装费用10镑）</div> */}
+        {/* </p> */}
         <h2 className="title">
           <img src="/mobile/luggage-service/seaShipping.svg" alt="" />
         </h2>
@@ -84,15 +83,15 @@ export default () => (
             <span className="highlight-color">时效10-12周</span>
           </li>
         </ul>
-        {/*<p className="attention-container">*/}
-        {/*  <div className="attention">纸箱：0.1-29.5kg 52镑</div>*/}
-        {/*  <div className="attention">行李箱：0.1-26.8kg 62镑</div>*/}
-        {/*</p>*/}
+        {/* <p className="attention-container"> */}
+        {/*  <div className="attention">纸箱：0.1-29.5kg 52镑</div> */}
+        {/*  <div className="attention">行李箱：0.1-26.8kg 62镑</div> */}
+        {/* </p> */}
         <p>
-          <a href="/mobile/luggage-service/2020年海运客户须知文档.pdf">2020年海运客户须知文档</a>
+          <a href="/mobile/luggage-service/2020年海运客户须知文档.pdf">海运客户须知文档</a>
         </p>
         <p>
-          <a href="/mobile/luggage-service/空运VS海运.pdf">空运VS海运详情</a>
+          <a href="/mobile/luggage-service/空运VS海运.pdf">空运VS海运详情文档</a>
         </p>
       </PostingSC>
     </ContentSC>
@@ -125,6 +124,7 @@ const BannerSC = styled.div`
     display: flex;
     align-items: center;
     position: relative;
+    background-image: linear-gradient(to top, rgb(0 0 0 / .4), rgb(0 0 0 / 0));
 
     .words {
       margin-left: 40px;

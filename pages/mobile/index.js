@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
+import Link from 'next/link';
 import Header from '../../components/layout/header/mobile';
 import CommonHeader from '../../components/base/common_header';
 import Card from '../../components/pages/home/card/mobile';
@@ -18,6 +19,12 @@ export default () => (
           <div className="second-title">给您地道的英国生活指南</div>
         </div>
       </div>
+      {/*<Link href="/mobile/special-event">*/}
+      {/*  <SpecialEventSC>*/}
+      {/*    <span>5-7月特惠活动</span>*/}
+      {/*    <i> →</i>*/}
+      {/*  </SpecialEventSC>*/}
+      {/*</Link>*/}
     </BannerSC>
     <ContentSC>
       <div className="wplService">
@@ -115,6 +122,28 @@ export default () => (
             backgroundImg="/mobile/luggage-service/pexels-vlada-karpovich-7368191.jpg"
             toLeftColor="rgba(10,78,176,1)"
           />
+          <Card
+            href="mobile/move-house"
+            icon={(
+              <svg
+                className="icon"
+                viewBox="0 0 1024 1024"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                width="42"
+                height="42"
+              >
+                <path
+                  d="M377.059 742.579c0 41.41-33.664 74.979-75.21 74.979-41.538 0-75.204-33.56-75.204-74.979s33.667-74.98 75.204-74.98C343.395 667.598 377.059 701.16 377.059 742.579L377.059 742.579zM832.362 742.579c0 41.41-33.665 74.979-75.206 74.979-41.544 0-75.204-33.56-75.204-74.979s33.66-74.98 75.204-74.98C798.697 667.598 832.362 701.16 832.362 742.579L832.362 742.579zM911.119 466.34l-72.661-96.64c-14.864-17.863-24.897-32.424-48.786-32.424L643.324 337.276c-17.908 0-32.518 14.562-32.518 32.424l0 324.241c0 17.793 14.512 32.265 32.329 32.395 8.005-55.858 55.839-99.077 114.02-99.077 58.213 0 106.044 43.249 114.015 99.105l32.332 0c17.916 0 32.52-14.565 32.52-32.421L936.022 531.816C936.021 501.105 911.119 466.34 911.119 466.34L911.119 466.34zM708.366 531.816 708.366 402.123l79.561 0c5.245 0 12.515 7.66 12.515 7.66l68.475 94.489c6.066 8.9 12.641 19.437 12.641 27.542L708.366 531.816 708.366 531.816zM545.763 207.577 122.987 207.577c-17.915 0-32.524 14.566-32.524 32.422L90.463 693.94c0 17.856 14.609 32.421 32.524 32.421l64.848 0c7.976-55.855 55.803-99.105 114.014-99.105 58.217 0 106.048 43.25 114.02 99.105l129.895 0c17.914 0 32.526-14.564 32.526-32.421L578.29 239.999C578.282 222.143 563.676 207.577 545.763 207.577L545.763 207.577z"
+                  fill="#8F5622"
+                />
+              </svg>
+            )}
+            p1="英国境内"
+            p2="邮寄/搬家"
+            backgroundImg="/mobile/move-house/move.jpg"
+            toLeftColor="rgba(10,78,176,1)"
+          />
         </CardsSC>
       </div>
     </ContentSC>
@@ -141,10 +170,11 @@ const BannerSC = styled.div`
     position: relative;
     align-items: center;
     z-index: 2;
+    background-image: linear-gradient(to top, rgb(0 0 0 / .1), rgb(0 0 0 / 0));
 
     .words {
       margin-left: 40px;
-      text-shadow: 5px 5px 10px rgba(0,0,0,1);
+      text-shadow: 0 0 15px rgba(0,0,0,0.4), 0 0 15px rgba(0,0,0,0.4);
 
       .en {
         color: rgba(254,254,255,1);
@@ -179,6 +209,25 @@ const BannerSC = styled.div`
     margin: auto;
     z-index: 1;
   }
+`;
+
+const SpecialEventSC = styled.div`
+  position: absolute;
+  font-size: 1.2em;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: transparent url('/mobile/special-event/event.png') no-repeat 0 0;
+  width: 216px;
+  height: 40px;
+  z-index: 3;
+  left: 5px;
+  bottom: 10px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ContentSC = styled.div`
