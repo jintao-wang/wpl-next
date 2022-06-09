@@ -8,7 +8,19 @@ import Footer from '../../components/layout/footer/mobile';
 
 export default () => (
   <ContainerSC>
-    <CommonHeader title="WPL" />
+    <CommonHeader title="WPL国际物流">
+      <meta
+        name="keywords"
+        content="回国行李 境内行李 国际个人包裹 文件快递
+        回国行李空运 联合包裹 英国境内行李 英国境内包裹 毕业搬家
+        毕业回国行李 空运行李 英国邮政 邮政包裹 USPS UPS USPS折扣 包裹快递
+        免费上门取件 上门取件 快递 中国文件快递 英国文件快递 快递文件
+        快递包裹 送货上门 包裹寄存 行李仓储 寄存 WPL 物流 快递
+        快递行李 留学归国快递 英国快递 代购快递
+        回国快递 英国海运 英国空运 寄快递回中国 行李海运 国际行李快递 中国行李快递
+        中国学生行李 寄送行李回国"
+      />
+    </CommonHeader>
     <Header />
     <BannerSC>
       <img className="airplane" src="/home/airplane-big.png" alt="" />
@@ -19,12 +31,12 @@ export default () => (
           <div className="second-title">给您地道的英国生活指南</div>
         </div>
       </div>
-      {/*<Link href="/mobile/special-event">*/}
-      {/*  <SpecialEventSC>*/}
-      {/*    <span>5-7月特惠活动</span>*/}
-      {/*    <i> →</i>*/}
-      {/*  </SpecialEventSC>*/}
-      {/*</Link>*/}
+      <Link href="/mobile/special-event">
+        <SpecialEventSC>
+          <span>5-7月特惠活动</span>
+          <i> →</i>
+        </SpecialEventSC>
+      </Link>
     </BannerSC>
     <ContentSC>
       <div className="wplService">
@@ -228,6 +240,7 @@ const SpecialEventSC = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: scale(0.8);
 `;
 
 const ContentSC = styled.div`

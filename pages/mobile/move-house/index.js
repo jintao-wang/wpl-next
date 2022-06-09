@@ -11,6 +11,7 @@ export default () => (
     sx={{
       paddingLeft: 0,
       paddingRight: 0,
+      paddingTop: '48px',
     }}
   >
     <Header />

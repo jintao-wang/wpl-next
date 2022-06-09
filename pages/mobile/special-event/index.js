@@ -5,43 +5,56 @@ import {
 } from '@mui/material';
 import Header from '../../../components/layout/header/mobile';
 import Footer from '../../../components/layout/footer/mobile';
+import CommonHeader from '../../../components/base/common_header';
 
 export default () => (
   <MuiContainer
     sx={{
       paddingLeft: 0,
       paddingRight: 0,
+      paddingTop: '48px',
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
     }}
   >
+    <CommonHeader title="WPL 5-7月特别活动" />
     <Header />
     <BannerSC>
       <div className="container">
         <div className="words">
-          <div className="word1">英国境内</div>
-          <div className="word2">邮寄/搬家服务</div>
-        </div>
-        <div className="slogan">
-          <div className="word3-1">七年老店</div>
-          <div className="word3-2">专注物流</div>
-          <div className="word3-3">极速送达</div>
-          <div className="word3-4">竭诚服务</div>
+          <h1 className="word1">5-7月特别活动</h1>
         </div>
       </div>
     </BannerSC>
     <ContentSC>
-      <p>
-        全英取件，英国皇家邮政门到门邮寄到英国各大主要城
-        市，安全高效，第二个工作日发出，1-2个工作日到达！
-        仅限纸箱包装，单边不能超过 1米，长宽高之和小于
-        150cm，每箱体积与实际重量都
-        <span className="highlight">小于 30kg 即可</span>
-        .单边超 过1米，价格请联系客服。
-      </p>
-      <h2 className="highlight center">首箱£30.00</h2>
-      <h2 className="highlight center">第二箱起£16. 00</h2>
-      <p className="highlight center bold">异地取件费用王10.00</p>
-      <p className="highlight center bold">伦敦地区每个订单有1镑附加费！</p>
-      <p className="center bold">注：同学们转学/搬家/送礼物 都可以邮寄包裹门到门服务！</p>
+      <CardSC>
+        <div className="left-part">
+          <img src="/mobile/special-event/image1.png" alt="" />
+        </div>
+        <div className="right-part">
+          <h2>物流专用纸箱</h2>
+          <p>原价5镑</p>
+          <p>特惠价￡4.00/个</p>
+          <p>尺寸：50x 37 x 59 cm</p>
+          <p>简介：毕业行李专用加厚加强纸箱（可装28-29寸行李箱体积的衣物）</p>
+        </div>
+      </CardSC>
+      <CardSC>
+        <div className="left-part">
+          <img src="/mobile/special-event/image1.png" alt="" />
+        </div>
+        <div className="right-part">
+          <h2>寄存专用纸箱</h2>
+          <p className="highlight bold">FREE</p>
+          <p>纸箱数量有限,先到先得</p>
+        </div>
+      </CardSC>
+      <AttentionSC>
+        <h2 className="center highlight">注意事项</h2>
+        <p>转发活动海报&推文至3个200人以上学生微信群并截图，3天以后，寄存使用纸箱全部免费，用多少，免费多少！（寄存3个月以上，）</p>
+      </AttentionSC>
     </ContentSC>
     <Footer />
   </MuiContainer>
@@ -62,69 +75,26 @@ const BannerSC = styled.div`
     left: 0;
     bottom: 0;
     right: 0;
-    background: url('/mobile/move-house/banner.jpg') center / cover;
+    background: url('/mobile/special-event/banner.jpg') center / cover;
     z-index: -1;
   }
 
   .container {
+    position: absolute;
+    bottom: 0;
     width: 100%;
-    display: flex;
-    align-items: center;
-    position: relative;
-    background-image: linear-gradient(to top, rgb(0 0 0 / .4), rgb(0 0 0 / 0));
-
+    background: rgba(59, 122, 176, .9);
+    padding: 2px 0;
     .words {
-      margin-left: 40px;
-      color: #316DCD;
+      color: #ffffff;
 
       .word1 {
+        padding: 0;
+        margin: 0;
         font-size: 32px;
         letter-spacing: 3px;
-        font-weight: 700;
-        text-shadow: 0 0 4px #FFFFFF, 0 0 4px #FFFFFF;
-      }
-
-      .word2 {
-        margin-top: 15px;
-        font-size: 18px;
-        letter-spacing: 4px;
-        color: #316DCD;
-        font-weight: 600;
-        text-shadow: 0 0 4px #FFFFFF, 0 0 4px #FFFFFF;
-      }
-    }
-
-    .slogan {
-      position: absolute;
-      bottom: 0;
-      font-size: 14px;
-      letter-spacing: 2px;
-      color: rgba(254, 254, 255, 1);
-      display: flex;
-      font-weight: 600;
-      width: 100%;
-
-      .word3-1 {
-        background: #FFA512;
-        flex: 1;
-        text-align: center;
-      }
-
-      .word3-2 {
-        background: #33318D;
-        flex: 1;
-        text-align: center;
-      }
-
-      .word3-3 {
-        background: #FFA512;
-        flex: 1;
-        text-align: center;
-      }
-
-      .word3-4 {
-        background: #33318D;
-        flex: 1;
+        font-weight: 800;
+        text-shadow: 0 0 15px rgba(0,0,0,0.4), 0 0 15px rgba(0,0,0,0.4);
         text-align: center;
       }
     }
@@ -133,7 +103,6 @@ const BannerSC = styled.div`
 
 const ContentSC = styled.div`
   width: 100%;
-  background: #FFFFFF;
   padding: 0 16px;
   box-sizing: border-box;
   color: #333333;
@@ -149,4 +118,37 @@ const ContentSC = styled.div`
   .bold {
     font-weight: bold;
   }
+`;
+
+const CardSC = styled.div`
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  
+  .left-part {
+    width: 120px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(31, 31, 31, .2);
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+  
+  .right-part {
+    padding-left: 20px;
+    padding-top: 5px;
+    flex: 1;
+
+    h2 {
+      padding: 0;
+      margin: 0;
+    }
+  }
+`;
+
+const AttentionSC = styled.div`
+  
 `;

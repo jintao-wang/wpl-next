@@ -21,6 +21,7 @@ export default () => (
 );
 
 const ContainerSC = styled.div`
+  padding-top: 48px;
 `;
 const ContentSC = styled.div`
    width: 100%;
