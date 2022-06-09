@@ -31,7 +31,7 @@ export default () => (
     <ContentSC>
       <CardSC>
         <div className="left-part">
-          <img src="/mobile/special-event/image1.png" alt="" />
+          <img src="/mobile/special-event/image1-small.png" alt="" />
         </div>
         <div className="right-part">
           <h2>物流专用纸箱</h2>
@@ -43,7 +43,7 @@ export default () => (
       </CardSC>
       <CardSC>
         <div className="left-part">
-          <img src="/mobile/special-event/image1.png" alt="" />
+          <img src="/mobile/special-event/image1-small.png" alt="" />
         </div>
         <div className="right-part">
           <h2>寄存专用纸箱</h2>
@@ -75,7 +75,7 @@ const BannerSC = styled.div`
     left: 0;
     bottom: 0;
     right: 0;
-    background: url('/mobile/special-event/banner.jpg') center / cover;
+    background: url('/mobile/special-event/banner-small.jpg') center / cover;
     z-index: -1;
   }
 
