@@ -44,16 +44,16 @@ const Confirm = () => {
     if (weeks <= 4) {
       // eslint-disable-next-line max-len
       const price = (oneNumber + 2 * twoNumber + 3 * threeNumber) * weeks * 2;
-      return price <= 30 ? 30 : price;
+      return price <= 40 ? 40 : price;
     }
     if (weeks > 26) {
       // eslint-disable-next-line no-mixed-operators,max-len
       const price = (oneNumber + 2 * twoNumber + 3 * threeNumber) * weeks / 2;
-      return price <= 30 ? 30 : price;
+      return price <= 40 ? 40 : price;
     }
     // eslint-disable-next-line max-len
     const price = (oneNumber + 2 * twoNumber + 3 * threeNumber) * weeks;
-    return price <= 30 ? 30 : price;
+    return price <= 40 ? 40 : price;
   };
 
   const handleEditSubmit = () => {

@@ -52,8 +52,9 @@ export default () => (
         </div>
       </CardSC>
       <AttentionSC>
-        <h2 className="center highlight">注意事项</h2>
+        <h2 className="center highlight">活动规则</h2>
         <p>转发活动海报&推文至3个200人以上学生微信群并截图，3天以后，寄存使用纸箱全部免费，用多少，免费多少！（寄存3个月以上，）</p>
+        <p>海运拼团3箱以上，纸箱免费</p>
       </AttentionSC>
     </ContentSC>
     <Footer />
