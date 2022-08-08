@@ -33,10 +33,10 @@ const Confirm = () => {
     }
   }, []);
   const getPrice = () => {
-    const oneNumber = parseInt(orderInfo.oneNumber);
-    const twoNumber = parseInt(orderInfo.twoNumber);
-    const threeNumber = parseInt(orderInfo.threeNumber);
-    const weeks = parseInt(orderInfo.weeks);
+    const oneNumber = parseInt(orderInfo.oneNumber) || 0;
+    const twoNumber = parseInt(orderInfo.twoNumber) || 0;
+    const threeNumber = parseInt(orderInfo.threeNumber) || 0;
+    const weeks = parseInt(orderInfo.weeks) || 0;
     if (weeks <= 4) {
       // eslint-disable-next-line max-len
       const price = (oneNumber + 2 * twoNumber + 3 * threeNumber) * weeks * 2;
