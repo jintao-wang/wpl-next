@@ -33,13 +33,9 @@ const Confirm = () => {
     }
   }, []);
   const getPrice = () => {
-    // eslint-disable-next-line radix
     const oneNumber = parseInt(orderInfo.oneNumber);
-    // eslint-disable-next-line radix
     const twoNumber = parseInt(orderInfo.twoNumber);
-    // eslint-disable-next-line radix
     const threeNumber = parseInt(orderInfo.threeNumber);
-    // eslint-disable-next-line radix
     const weeks = parseInt(orderInfo.weeks);
     if (weeks <= 4) {
       // eslint-disable-next-line max-len
